@@ -3,10 +3,9 @@ from aiogram.types import KeyboardButton, ReplyKeyboardMarkup
 
 
 show_packages_button = KeyboardButton("Показать пакеты")
-info_button = KeyboardButton("Информация")
+# info_button = KeyboardButton("Информация")
 back_button = KeyboardButton("Назад")
-main_kb = ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True).row(show_packages_button,
-                                                                                info_button, back_button)
+main_kb = ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True).row(show_packages_button, back_button)
 
 
 def get_choose_pack_kb(n, packages_info):
