@@ -107,8 +107,8 @@ def add_order(package_id, amount, client_telegram_id, code):
     order = get_package_by_id(package_id)
     order = (None, ) + order + (client_telegram_id, code, 'in process')
     # print(order)
-    base.execute(set_order_amount_query.format(amount=amount, package_id=package_id))
     base.execute(add_order_query, order)
+    base.execute(set_order_amount_query.format(amount=amount, package_id=package_id))
     base.commit()
 
 
@@ -130,8 +130,7 @@ def cancel_order(code):
 
 
 def create_order_code(package_id, user_id):
-    return str(cur.execute('SELECT MAX(order_id) FROM orders').fetchall()[0][0] + 1) +\
-           str(user_id)[:3] + str(package_id)  # code = order_id + (3 last digits from user_id) + package_id
+    return str(cur.execute('SELECT MAX(order_id) FROM orders').fetchall()[0][0] + 1) + str(user_id)[:3] + str(package_id)  # code = order_id + (3 last digits from user_id) + package_id
 
 
 def get_all_partners():

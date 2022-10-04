@@ -36,7 +36,7 @@ async def make_purchase_command(message: types.Message):
 async def type_code(message: types.Message, state: FSMContext):
     async with state.proxy() as order:
         order['code'] = int(message.text)
-    await message.answer("Выдайте и проведите оплату пакета: " + get_package_info(int(message.text)))
+    await message.answer("Выдайте и проведите оплату пакета: " + get_package_info(int(message.text)))  # code
     await message.answer("Если покупатель оплатил заказ, то введите 'Да', иначе 'Нет'")
     await MAKE_PURCH_FSM.approve.set()
 
